@@ -38,7 +38,7 @@ const ServerPage = () => {
             }
         }).catch(error=>{
             if(error.response.status==400){
-                toast.success("Unauthorized access");
+                toast.error("Unauthorized access");
                 router.push("/");
             }
             console.log(error);
