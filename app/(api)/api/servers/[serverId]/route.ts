@@ -1,3 +1,5 @@
+export const dynamic='force-dynamic';
+
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
@@ -8,6 +10,7 @@ export async function GET(
     const { searchParams } = new URL(req.url);
     const serverId = searchParams.get("serverId");
     const {userId} = auth();
+    console.log(serverId);
 
     if(!userId){
         return new NextResponse("Unauthorized", {status:401});
