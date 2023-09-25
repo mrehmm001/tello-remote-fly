@@ -10,7 +10,7 @@ import { useUser } from "@clerk/nextjs";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import axios from "axios";
 import { ChevronDown, Copy, Crown, LogOut } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import qs from "query-string";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";

@@ -1,12 +1,12 @@
 import prismadb from "@/lib/prismadb";
+import { getParamsFromURL } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function GET(
     req:Request,
 ){
-    const searchParams = new URL(req.url).searchParams;
-    const serverId = searchParams.get("serverId");
+    const {serverId} = getParamsFromURL(req.url);
     const {userId} = auth();
 
     if(!userId){
@@ -65,7 +65,6 @@ export async function GET(
 export async function PATCH(
     req:Request
 ){
-    const { searchParams } = new URL(req.url);
     const body = await req.json();
     const {name, socket_url, serverId} = body;
     const {userId} = auth();
@@ -96,8 +95,7 @@ export async function PATCH(
 export async function DELETE(
     req:Request
 ){
-    const { searchParams } = new URL(req.url);
-    const serverId = searchParams.get("serverId");
+    const {serverId} = getParamsFromURL(req.url);
     const {userId} = auth();
 
     console.log("serverID ",serverId)
