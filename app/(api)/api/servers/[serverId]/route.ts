@@ -77,7 +77,7 @@ export async function PATCH(
     }
     
     if(!serverId){
-        return new NextResponse("No server code", {status:400});
+        return new NextResponse("No server code", {status:404});
     }
 
     await prismadb.server.update({
