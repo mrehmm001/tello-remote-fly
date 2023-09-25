@@ -1,3 +1,4 @@
+export const dynamic='force-dynamic';
 "use client";
 
 import ServerMenuDropdown from "@/components/server-menu-dropdown";
