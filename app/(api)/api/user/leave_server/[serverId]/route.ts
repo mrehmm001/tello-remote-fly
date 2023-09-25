@@ -10,11 +10,11 @@ export async function DELETE(
     const {userId} = auth();
 
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     if(!serverId){
-        return new NextResponse("No server code", {status:400});
+        return new NextResponse("No server code", {status:404});
     }
 
     const data = await prismadb.server.findUnique({

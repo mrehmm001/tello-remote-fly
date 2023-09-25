@@ -10,11 +10,11 @@ export async function GET(
     const {userId} = auth();
 
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     if(!serverId){
-        return new NextResponse("No server code", {status:400});
+        return new NextResponse("No server code", {status:404});
     }
 
     const users = await prismadb.server.findUnique({
@@ -56,7 +56,7 @@ export async function GET(
     const hasUser = users.users.filter(user=>user.userId==userId);
 
     if(server?.ownerId!==userId && hasUser.length===0){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
 
     return NextResponse.json(serverResponseData, {status:200});
@@ -73,7 +73,7 @@ export async function PATCH(
     console.log("SERVER ID ", body)
 
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     if(!serverId){
@@ -103,11 +103,11 @@ export async function DELETE(
     console.log("serverID ",serverId)
 
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     if(!serverId){
-        return new NextResponse("No server code", {status:400});
+        return new NextResponse("No server code", {status:404});
     }
 
     await prismadb.server.delete({

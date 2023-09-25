@@ -11,7 +11,7 @@ export async function POST(
     const {userId} = auth();
     
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     const server = await prismadb.server.findFirst({where:{
@@ -59,7 +59,7 @@ export async function GET(){
     const {userId} = auth();
     
     if(!userId){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
 
     const user = await prismadb.user.findUnique({
@@ -69,7 +69,7 @@ export async function GET(){
     })
 
     if(!user){
-        return new NextResponse("Unauthorized", {status:400});
+        return new NextResponse("Unauthorized", {status:401});
     }
     
     const servers = await prismadb.server.findMany({where:{
