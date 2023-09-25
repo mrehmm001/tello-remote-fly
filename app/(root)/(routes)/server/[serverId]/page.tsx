@@ -37,7 +37,7 @@ const ServerPage = () => {
                 gameController(reponse.data.socket_url||"");
             }
         }).catch(error=>{
-            if(error.response.status==400){
+            if(error.response.status==401){
                 toast.error("Unauthorized access");
                 router.push("/");
             }
